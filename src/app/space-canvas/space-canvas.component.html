@@ -1,0 +1,74 @@
+<div class="row form-row">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <form>
+  <div class="form-group">
+    <label for="srcPlanetId">Source Planet Id</label>
+    <input #srcPlanetId type="text" class="form-control" id="srcPlanetId" aria-describedby="emailHelp" placeholder="Enter Source Planet Id">
+    <small *ngIf ="isSrcIdNotEntered" class="form-text text-muted errorMsg">Please enter sourceId.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="destPlanetId">Destination Planet Id</label>
+    <input #destPlanetId type="text" class="form-control" id="destPlanetId" placeholder=" Enter Destination Planet Id">
+    <small *ngIf ="isDestIdNotEntered" class="form-text text-muted errorMsg">Please enter destination id</small>
+  </div>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="trafficId" #traffic (change)="true">
+    <label class="form-check-label">Traffic</label>
+  </div>
+</form>
+  <button id="shortest-route-btn" type="submit" class="btn btn-primary" (click)="showShortestRoute(srcPlanetId.value, destPlanetId.value,traffic.checked)">Calculate Shortest Route</button>
+
+  <button id="possible-routes-btn" type="submit" class="btn btn-primary" (click)="showPossibleRoutes(srcPlanetId.value, destPlanetId.value,traffic.checked)">Calculate all Routes</button>
+
+  </div>
+</div>
+
+<div class="row clear-btn-row">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <button type="submit" class="btn btn-primary" (click)="clearLatestResults()">Clear</button>
+   </div>
+</div>
+
+<div class="answer-row row" *ngIf="shortestRoute">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Route Path</th>
+      <th scope="col">Distance(in LightYears)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>{{shortestRoute.route.join()}}</td>
+      <td>{{shortestRoute.distance}}</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+
+<div class="result-row row" *ngIf="possibleRoutes.length>0">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Route Path</th>
+      <th scope="col">Distance(in LightYears)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let route of possibleRoutes; let ind = index;">
+      <th scope="row">{{ind+1}}</th>
+      <td>{{route.route.join()}}</td>
+      <td>{{route.distance}}</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
