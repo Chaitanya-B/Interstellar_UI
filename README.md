@@ -1,6 +1,14 @@
-# MyApp
+
+# Interstellar Navigation App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.1.
+
+## Important Note
+
+Please go to https://github.com/Chaitanya-B/Interstellar, clone the repository and then run below comand
+           node app.js 
+This will start nodeJS server at port 3000 and the REST endpoints will be ready.
+
 
 ## Development server
 
